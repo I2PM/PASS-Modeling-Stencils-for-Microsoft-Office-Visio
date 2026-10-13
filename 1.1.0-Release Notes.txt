@@ -1,0 +1,272 @@
+Release Notes 1.1.0-R
+2026-10-13
+
+	Major release: besides several new modeling features, almost the complete macro code has been reviewed, bug-fixed, and stabilized.
+
+	New Features and major Improvements:
+		- New: Semantic Check (AI): checks the labels of the current page or of the whole model against the PASS naming conventions with the help of a large language model (Anthropic Claude, OpenAI, UniGPT, other OpenAI-compatible or local services, or a manual mode via the clipboard). You are asked before any labels are sent; API keys are only stored for your Windows user.
+		- New: Aspect-oriented modeling (turn on with "Activate Aspects" in the Extended Modeling Functions)
+			- Subjects can be declared "Aspect Subjects": their behavior is meant to be injected into other process models at run time. Aspect Subjects have their own symbol, color, and <<ASPECT>> label.
+			- New "Edit Aspect Definition" editor (context menu of an Aspect Subject) to declare where and how the aspect is injected (injection points and execution modality) and which data it needs to access
+			- Aspects are exported to OWL according to the aspect-injection extension of the Standard-PASS-Ontology
+				- https://github.com/ThoEJ/aspect-injection-pass-ont
+			- The Model Check warns about incomplete aspect definitions
+		- New: "Generate Interface SID": creates the counterpart SID for selected interface subjects. Both pages stay linked: messages, message connectors, and subject names are mirrored automatically, and differences can be re-synchronized.
+		- New: OWL export now also available as JSON-LD (Export menu: "Generate OWL-XML" and "Generate OWL-JSON-LD")
+		- Reworked ribbon: automatic compact layout for smaller screens, regrouped buttons, keyboard shortcuts (Alt, A, P), tool tips for all buttons, and a new "Help / About" button
+		- Subject Split rebuilt: a split is now done completely or not at all (if anything fails, the whole split is undone)
+		- Major improvements for Model Check and Simple Simulation (SiSi)
+			- A model is now checked together with all its extension layers (fewer false warnings)
+			- More correct chance and time calculations (receive chances, time-outs, loops, triggers, several answers to one request)
+
+	Minor Improvements and Bug Fixes:
+		- Reviewed and fixed the event handling on SID, SBD, and data definition pages (more robust, fewer runtime errors)
+		- OWL export: several wrong values and crashes fixed; transitions now always refer to the correct states, also on copied or renumbered pages
+		- Word and PowerPoint export: problems no longer abort the export, and the model is left unchanged
+		- Gantt Chart Generator reviewed and improved
+		- Dialogs no longer lose data when loading fails
+		- Transitions to the end point of a choice segment path are now drawn straight
+		- Quotation marks in subject names are handled correctly when renaming
+		- General code clean-up for more stability
+
+Release Notes 1.0.1-R
+2025-09-10
+	- Minor bug fixes (especially SiSi and exports)
+	- Working and improved Gantt Chart Generator (optional drawing of lines between corresponding send and receive states)
+	- New, better navigation/auto-linking between macros and calling behaviors
+	- Export PNG/PDF function
+
+Release Notes 1.0.0-R
+2023-01-06
+
+	- New callout shape to display comments in visualizations
+	- New feature: Input Pool Constraints editor
+	- New Subject Group shape (no formal PASS feature) - allows to group several subjects and to give all subjects of the group the same send and receive capabilities
+	- Direct link/go-to to macro behaviors
+	- New option to change the symbol of subjects and interface subjects. It can now be set to "none" or to a process symbol indicating the principal structure of the underlying behavior (cyclic, linear, or mixed). Note: this is a purely visual feature without semantic impact on the model.
+	- Bug fixes for the Model Check. Made more robust.
+	- Bug fixes for the Word export
+	- Bug fix for naming issues with subject-specific macros
+	- Bug fix: replacing subject shapes with the Visio function "Replace Shape" now preserves existing connections
+	- Bug fix: file exports (OWL, Word, PowerPoint, Business Actor) can now also handle models that are saved in MS OneDrive locations
+	- Improved simulation
+	- Frequency-based timer transitions now also support the ISO 8601 format if wished (like the time-out transitions already do)
+	- SiSi simulation tool available in the "R" version (previously only in the full version)
+	- Excel export for SiSi simulation results in the full version
+	- OWL export now exports user-defined shape data fields that have been added by the modeler as modelSpecificDataProperties
+	- Word export now uses Enhanced Metafiles (EMF) as default format --> vector graphics in the files
+
+
+Release Notes 0.9.1-R
+2022-04-29
+
+	- Minor bug fixes for the OWL export
+	- Minor bug fixes for the data shape export
+
+2021-07-15
+
+Release Notes 0.9.0-R
+
+	New Features and major Improvements:
+		- Major improvements for Model Check and Simple Simulation (SiSi)
+			- Choice segments are now supported
+			- Extension layers are now supported
+			- Model Check and Simple Simulation can now remain open while modeling and are resizable
+			- Model Check and Simple Simulation now come with a progress bar giving feedback about their progress
+			- Fixed problems in exotic SBD shapes to avoid crashes of the Model Check and Simple Simulation
+			- Added cost computation for Simple Simulation (SiSi)
+		- New extension/macro/guard creation capabilities (!)
+			- Macro modeling functionality integrated (can now be selected in all states)
+		- New Process Metrics tool
+		- Data modeling feature is now standard and exports correctly into the OWL format (as defined by the standard-pass-ont v0.1.1)
+				- https://github.com/I2PM/Standard-PASS-Ontology/releases
+		- Word export functionality greatly improved (!)
+		- New shape data display callout shape that allows to display any shape data (e.g. model component comments)
+
+	- Minor improvements
+		- General stability issues fixed
+		- Fixed aspects of choice segments (older versions of the choice segments)
+		- Re-ordered data layout in the shape data of states
+		- Cosmetic detail fixes, e.g. for timer and user cancel transitions
+		- Fixed rotation issues with subjects
+		- Quotation marks are now allowed in message and subject names
+		- Automatic replacement of outgoing transitions improved to further minimize incorrect outgoing transitions
+
+
+2020-03-02
+
+Release Notes 0.8.1-R
+
+- Overhauled data modeling system (still with a specialized additional DATA modeling stencil set)
+	- Modeling of subject data on the SBD page within a specialized "Subject Data Shape"
+	- Modeling of message payloads on a specialized data modeling page
+	- Modeling of complex data types on the data modeling page
+
+- Abstract Layered PASS (ALPS) modeling is now not displayed initially for inexperienced users (it must be turned on)
+
+- Copying of message connectors in SIDs is now possible
+- Update SiSi: simulation results are now also saved in the shape data of the subject shapes
+- Bug fixes for SiSi in general
+
+2018-12-07
+
+Release Notes 0.8.0-R
+
+- Updated OWL export to fit the export standard 1.0.0
+- Added "Advice" type option for send, receive, and do transitions
+- Added "Abstract Communication Channel" for SIDs
+- Added "Flow Restrictor" for SBDs
+- Added "finalize" option to standard subjects, abstract subjects, interface subjects, and states
+- Slightly reworked how send and receive options are determined. Now only subjects that are connected via ALPS message connectors or channels are considered.
+- Reworked PowerPoint export (now works more consistently)
+- Spell check function now includes comments
+- Added explanation texts to all shapes
+- General bug fixing and minor improvements
+
+
+Documents in which the standard of subject-oriented modeling with PASS and its execution are described.
+
+
+2018-09-20
+
+Release Notes 0.7.7-R
+
+- Adding or removing messages to/from message boxes now updates the send and receive capabilities of the connected subjects
+
+- Removed the naming of "States" in the stencil overview (Do State --> Do, Send State --> Send, Receive State --> Receive)
+
+- Do states now feature a "D" symbol instead of the old "F" for function states
+
+- Removed a routing bug that prevented straight routing of connectors in AutoConnect mode
+
+- Removed a bug that disconnected new message shapes from their containers when their ID contained a number with more than 3 digits --> should now work at least with 4-digit IDs (below 9999 shapes on a page)
+
+- Theme-guarded many visual elements to avoid skewing of model visuals with Visio 2016
+
+- Upon opening a saved document, the macros now always switch to the first SID page in the document if no other SID page is selected
+
+- Added a warning function to the Model Check that tries to detect inconsistencies in your process model and warns if not all end states may be reachable with a certain chance
+
+- Added a warning function to the Model Check that analyzes whether all messages defined in the SID are actually sent and received
+
+- (Simple Sim): added a feature to calculate and display the cumulative path chances to reach the different end states of a behavior
+
+- ActNConnect Business Actor export: exported Business Actor XMLs should now be executable without explicit data modeling
+
+- Added a "Print Mode": due to a bug in Visio, the shape functionality prevented transitions from being copied and pasted as pictures correctly. A new button temporarily disables this functionality and allows to paste or print the transitions correctly.
+
+- Updated shapes
+	- Message shapes can now optionally be filled with colors to add visual highlights to the model
+
+- Cleaned-up UI: removed some unused buttons
+
+
+
+2017-11-29:
+
+Release Notes 0.7.6-R
+
+General Features:
+	- Shapes added to message box and group state containers are automatically brought to the front upon being added to the container, so the container does not cover them
+	- State groups newly added to an SBD are automatically sent to the back in order not to obstruct already existing states
+
+OWL Export:
+	- Option to include SVG representations in the export
+	- Option to include simple 2D coordinates and dimensions for states and
+
+ActNConnect Business Actor Export:
+
+	- There is now an option to export subjects to an XML format that can be used to power the "Actorsphere" of ActNConnect, a web-based workflow execution environment for subject-oriented models (more:
+http://www.actnconnect.com )
+
+Fixed Minor Issues:
+	- Connector interlinkage
+	- Copying to other programs as a picture should now work better (arrow shapes were missing before)
+	- Fixed issues with the Model Check tool
+	- Shape names of new subject shapes for linking interface subjects to other SIDs have been corrected
+
+Optical Changes:
+	- Connector corner roundings increased to improve the visibility of the direction of overlaying connectors
+	- Subjects now sport a slightly improved logo (better for SVG export)
+
+
+2017-08-30:
+
+Release Notes 0.7.5-R
+
+- NEW! Model Check functionality
+- Updated OWL export to the current standardization format status
+- Visual changes: interface subjects (previously also known as external subjects) now sport an "I" in their symbol rather than an "EX"
+- Export to ActNConnect available with the additional data modeling shapes
+- Default priority number for receive and do transitions changed to 1 (from "0")
+
+Renaming:
+- "Function States" are now called "Do States" to match them with the corresponding "Do Transitions"
+- "Succession" transition type renamed to "Precedence" transition type
+- Time-out transitions renamed to time transitions to fit the OWL standard
+
+2017-01-16: Release Notes 0.7.4-R
+
+- General visual changes
+
+- Updated OWL export format to the current standardization format
+
+- Changed resize behavior of messages and message connectors
+
+
+2017-01-16: Release Notes 0.7.2-R
+
+Changes:
+
+- Minor (visual) changes and bug fixes
+
+- Interface/Ribbon:
+	- OWL/XML export added: exports the core essentials of the model into an OWL/XML description conforming with the standard-pass-ont and abstract-layered-PASS-ont
+	- Update Shapes function: brings all shapes in the model up to the current version (by replacing them) - use with caution, it may damage the model
+	- Stop Macros: permanently stops all macro functionality (e.g. to repair the model) - Visio must be restarted to undo this
+
+- Modeling:
+	- New time trigger transition functionality (5 variants)
+	- New checklist shape
+
+
+
+2016-07-16: Release Notes 0.7.0-R
+
+Important: v0.7.0 is not backwards compatible with process models created with earlier versions, especially due to the new message modeling. The conversion will be problematic at best and should be conducted without active macros. You may lose message information in particular. In important cases please contact: matthes.elstermann@web.de
+
+Changes:
+
+- New message mechanism on SIDs: instead of simply being string tags, messages are now individual shapes on the drawing page that can be added to, ordered in, and withdrawn from the message boxes on the corresponding connectors.
+	- In consequence, the handling of the message connector has changed slightly. The message box no longer moves with the connector. It can be centered to the current middle of the connector.
+
+- Reduced the number of connector shapes in the stencils. The individual trigger and receive transitions are gone. Instead, the connector type can be changed via the context menu or the shape data.
+
+- Minor renaming of shapes
+
+- Fixed minor issues with colors when copying and pasting ALPS shapes as graphics
+
+- Introduced shape data for the layer/extension mechanism to shapes and work pages
+
+
+2016-05-13: Release Notes 0.6.0-R
+
+The new version of the S-BPM Visio Shapes has been released now.
+
+Please note the following information.
+
+Important: v0.6.0 is not backwards compatible with process models created with earlier versions. If you need to convert older models, you need to add shape categories or replace the old shapes with the new ones using the "Replace Shape" function. The conversion should best be conducted without active macros. The conversion may still cause problems. In important cases please contact: matthes.elstermann@web.de
+
+Changes:
+
+- Visio container functionality is now used for checkboxes and state groups, which greatly improves their handling (including features such as automatic adjustment of sizes and being able to move the complete content of a group/box simply by selecting the box)
+
+- There is now only one checkbox shape. It can be switched from vertical to horizontal layout via an action in the right-click menu of the shape.
+
+- The standard color scheme has been changed:
+	- Red now denotes receive/waiting states, while green denotes sending/going-out states. The idea is that of a traffic light (red = wait, yellow = prepare yourself, do something, green = go). Note that this is the inverse of some standard settings in other programs.
+
+- General improvements of error-prone shape behavior that appeared randomly, especially with larger process diagrams
+
+- E.g. all shapes now have categories that allow easier handling programming-wise. The code has been revised to mostly execute depending on the categories, which is better performance-wise.
+
